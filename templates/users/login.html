@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login - Social Stream</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .login-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            overflow: hidden;
+            width: 100%;
+            max-width: 400px;
+        }
+        .card-header {
+            background: #fff;
+            border-bottom: none;
+            padding-top: 40px;
+            text-align: center;
+        }
+        .btn-custom {
+            background: #667eea;
+            border: none;
+            border-radius: 50px;
+            padding: 10px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .btn-custom:hover {
+            background: #764ba2;
+        }
+        .form-control {
+            border-radius: 10px;
+            padding: 12px;
+            background-color: #f7f9fc;
+            border: 1px solid #e1e1e1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-card p-4">
+        <div class="card-header">
+            <h3 class="fw-bold text-dark">Welcome Back</h3>
+            <p class="text-muted small">Please enter your details</p>
+        </div>
+        <div class="card-body">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label class="form-label fw-bold text-secondary small">USERNAME</label>
+                    <input type="text" name="username" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold text-secondary small">PASSWORD</label>
+                    <input type="password" name="password" class="form-control" required>
+                </div>
+                <div class="d-grid mt-4">
+                    <button type="submit" class="btn btn-primary btn-custom text-white">Sign In</button>
+                </div>
+            </form>
+            <div class="text-center mt-4">
+                <small class="text-muted">Don't have an account? <a href="{% url 'register' %}" class="text-decoration-none fw-bold" style="color: #764ba2;">Sign Up</a></small>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
