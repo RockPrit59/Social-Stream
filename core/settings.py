@@ -1,3 +1,4 @@
+import os
 """
 Django settings for core project.
 
@@ -147,7 +148,7 @@ CHANNEL_LAYERS = {
         "BACKEND": "channels.layers.InMemoryChannelLayer"
     }
 }
-import os
+
 # core/settings.py (Add to bottom)
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
