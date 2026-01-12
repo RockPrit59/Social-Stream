@@ -8,15 +8,13 @@ class ChatConsumer(AsyncWebsocketConsumer):
         
         # 2. Get the User I want to talk to (from URL)
         # Note: In routing.py we called this 'room_name'
-        self.other_user = self.scope['url_route']['kwargs']['room_name']
+        self.other_username = self.scope['url_route']['kwargs']['room_name']
 
         # 3. CRITICAL FIX: Sort the names!
         # This ensures "Prit talking to Pritam" and "Pritam talking to Prit"
         # both end up in the EXACT SAME room: "chat_Prit_Pritam"
-        if self.me.username < self.other_user:
-            self.room_group_name = f"chat_{self.me.username}_{self.other_user}"
-        else:
-            self.room_group_name = f"chat_{self.other_user}_{self.me.username}"
+        users = sorted([self.me.username, self.other_username])
+        self.room_group_name = f"chat_{users[0]}_{users[1]}"
 
         # 4. Join the Room
         await self.channel_layer.group_add(
