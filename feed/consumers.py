@@ -39,7 +39,7 @@ from asgiref.sync import sync_to_async
 class ChatConsumer(AsyncWebsocketConsumer):
     async def connect(self):
         self.user = self.scope['user']
-        self.other_username = self.scope['url_route']['kwargs']['username']
+        self.other_username = self.scope['url_route']['kwargs']['room_name']
         
         # Sort names to ensure room name is consistent (e.g., "chat_A_B" is same as "chat_B_A")
         users = sorted([self.user.username, self.other_username])
